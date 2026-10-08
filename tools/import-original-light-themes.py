@@ -48,13 +48,17 @@ def main():
             if dst.exists():
                 raise SystemExit(f"Refusing to overwrite existing {dst}; move it first")
             shutil.copytree(src, dst, symlinks=True)
-            apps = dst / "gtk-3.0/apps"
-            apps.mkdir(exist_ok=True)
-            shutil.copy2(panel, apps / "xfce-panel.css")
-            maincss = dst / "gtk-3.0/gtk-main.css"
-            original = maincss.read_text()
-            if 'apps/xfce-panel.css' not in original:
-                maincss.write_text(original.rstrip() + '\n@import url("apps/xfce-panel.css");\n')
+            # GTK 3.24 uses gtk-3.20 when the theme supplies it.
+            for gtk_dir in ("gtk-3.0", "gtk-3.20"):
+                maincss = dst / gtk_dir / "gtk-main.css"
+                if not maincss.is_file():
+                    continue
+                apps = dst / gtk_dir / "apps"
+                apps.mkdir(exist_ok=True)
+                shutil.copy2(panel, apps / "xfce-panel.css")
+                original = maincss.read_text()
+                if 'apps/xfce-panel.css' not in original:
+                    maincss.write_text(original.rstrip() + '\n@import url("apps/xfce-panel.css");\n')
             # Always carry the original package's theme identity but use a unique name.
             idx = dst / "index.theme"
             if idx.is_file():
