@@ -3,7 +3,7 @@
 @define-color fg_color #4c4c4c;
 @define-color base_color #ffffff;
 @define-color text_color #3C3C3C;
-@define-color selected_bg_color #87A556;
+@define-color selected_bg_color #f07746;
 @define-color selected_fg_color #ffffff;
 @define-color tooltip_bg_color #1e1e1e;
 @define-color tooltip_fg_color #ebebeb;
@@ -43,7 +43,7 @@
 @define-color question_bg_color rgb (138, 173, 212);
 @define-color error_fg_color rgb (235, 235, 235);
 @define-color error_bg_color rgb (223, 56, 44);
-@define-color link_color #A7BB85;
+@define-color link_color @selected_bg_color;
 @define-color success_color #4e9a06;
 @define-color error_color #df382c;
 
@@ -82,7 +82,7 @@
  * notebook *
  ************/
 
-@define-color core_color_a #B9C0A9; /* Core color for green widgets in RadiantMATE. */
+@define-color core_color_a mix(@selected_bg_color, @core_color_b, 0.20); /* Accent-derived notebook strip */
 @define-color core_color_b #edeceb; /* Core color for gray widgets in RadiantMATE. */
 
 @define-color notebook_bg_color shade(@core_color_b, 1.02);
@@ -165,7 +165,7 @@
 @define-color scrollbar_slider_hover_bg_color shade(@theme_selected_bg_color, 1.03);
 
 @define-color progressbar_fill_a shade(@theme_selected_bg_color, 1.07);
-@define-color progressbar_fill_b shade(mix(@theme_selected_bg_color, green, 0.10), 0.91);
+@define-color progressbar_fill_b shade(mix(@theme_selected_bg_color, @selected_bg_color, 0.10), 0.91);
 @define-color button_border_active shade(@theme_selected_bg_color, 0.95);
 
 @define-color osd_progressbar_background_a @selected_bg_color;
