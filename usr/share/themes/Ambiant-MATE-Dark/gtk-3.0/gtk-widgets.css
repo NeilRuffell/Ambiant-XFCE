@@ -924,11 +924,6 @@ textview,
     color: @theme_selected_fg_color;
 }
 
-.view text selection:hover,
-.view:hover {
-	background-color: shade (@theme_selected_bg_color, 1.55);
-	color: shade (@theme_selected_bg_color, 0.35);
-}
 
 .view text selection:backdrop,
 .view:selected:backdrop {
