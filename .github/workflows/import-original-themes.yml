@@ -1,0 +1,31 @@
+name: Import authentic Ubuntu Ambiance and Radiance
+on:
+  workflow_dispatch:
+  push:
+    branches: [xfce-panel-integration]
+    paths: [.github/workflows/import-original-themes.yml]
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Retrieve Ubuntu's official, unchanged light-themes binaries
+        run: |
+          sudo apt-get update
+          apt-get download light-themes
+      - name: Import authentic original assets and CSS
+        run: |
+          python3 tools/import-original-light-themes.py 'light-themes_*.deb'
+      - name: Commit imported theme files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add usr/share/themes/Ambiance-XFCE usr/share/themes/Radiance-XFCE
+          if ! git diff --cached --quiet; then
+            git commit -m 'Import original Ubuntu Ambiance and Radiance themes with Xfce styling'
+            git push origin HEAD:xfce-panel-integration
+          fi
