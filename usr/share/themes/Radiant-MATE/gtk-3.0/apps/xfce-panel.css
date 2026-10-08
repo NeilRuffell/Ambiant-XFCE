@@ -12,7 +12,7 @@
 .xfce4-panel.background label,
 .xfce4-panel.background menubar > menuitem {
   color: @dark_fg_color;
-  text-shadow: 1px 1px alpha(#000000, 0.8);
+  text-shadow: none;
 }
 .xfce4-panel.background menubar,
 .xfce4-panel.background menubar > menuitem {
