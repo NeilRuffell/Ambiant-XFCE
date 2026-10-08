@@ -1,7 +1,7 @@
 * {
     -GtkArrow-arrow-scaling: 0.6;
-    -GtkHTML-link-color: #a7bb85; /* @link_color */
-    -GtkIMHtml-hyperlink-color: #a7bb85; /* @link_color */
+    -GtkHTML-link-color: #f07746; /* @link_color */
+    -GtkIMHtml-hyperlink-color: #f07746; /* @link_color */
     -GtkScrolledWindow-scrollbar-spacing: 0;
     -GtkTextView-error-underline-color: #df382c; /* @error_color doesn't work due to a gtk bug */
     -GtkToolButton-icon-spacing: 6;
@@ -4505,5 +4505,5 @@ entry.search {
 
 *:link,
 *:visited {
-    color: #a7bb85; /* @link_color */
+    color: #f07746; /* @link_color */
 }
